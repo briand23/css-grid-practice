@@ -1,0 +1,284 @@
+/* Shared CSS ----------------------------------------*/
+html {
+  font-family: "Dosis", sans-serif;
+  font-size: 16px;
+  color: #1e4040;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header,
+footer {
+  background-color: #1e4040;
+  color: #71d99e;
+}
+
+main,
+aside {
+  padding: 20px 5%;
+}
+
+a {
+  color: #71d99e;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+img {
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+}
+
+/* CSS Outer Grid Styles ---------------------------- */
+.outer-grid {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 70px 1fr;
+  grid-template-columns: 90px 1fr;
+  /* grid-template-rows: 8vw 1fr;
+  grid-template-columns: 10vw 1fr; */
+  grid-template-areas:
+    "aheader aheader"
+    "ainner ainner";
+}
+
+.outer-grid-expanded {
+  grid-template-areas:
+    "aheader aheader"
+    "anav ainner";
+}
+
+header {
+  /* background-color: rgba(0, 31, 255, 0.5); */
+  grid-area: aheader;
+}
+
+nav {
+  grid-area: anav;
+}
+
+.hide-nav {
+  display: none;
+}
+
+/* The inner grid is a grid item to the outer grid, but a grid container to its grid items */
+.inner-grid {
+  overflow: scroll;
+  grid-area: ainner;
+
+  display: grid;
+  grid-template-rows: 1fr auto 60px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "amain"
+    "aaside"
+    "afooter";
+}
+
+main {
+  grid-area: amain;
+  background-color: rgba(255, 122, 0, 0.3);
+}
+
+aside {
+  grid-area: aaside;
+}
+footer {
+  /* background-color: rgba(255, 122, 0, 0.7); */
+  grid-area: afooter;
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+}
+
+.fa-bars {
+  margin-right: 10px;
+}
+
+.fa-bars:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.right-header {
+  display: flex;
+}
+
+.header-link {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-link i {
+  font-size: 0.8rem;
+}
+
+/* Nav Styles ----------------------- */
+nav {
+  padding-top: 20px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #1e4040;
+  margin-top: 15px;
+}
+
+.nav-link a {
+  color: #1e4040;
+  text-decoration: none;
+}
+.nav-link:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* Sidebar styles ----------------------- */
+aside {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* footer styles -------------------- */
+footer p {
+  color: white;
+  margin: 0;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* collage ---------------------------- */
+.collage {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 40px 1fr 40px 1fr;
+  height: 550px;
+  align-items: center;
+}
+
+.collage-1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  /* z-index: -1; */
+  transform: rotate(-3deg);
+}
+
+.collage-2 {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  z-index: 1;
+  box-shadow: 3px 4px 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+.collage-3 {
+  grid-column-start: 4;
+  grid-column-end: 6;
+  /* z-index: -1; */
+  transform: rotate(3deg);
+}
+
+.collage-1,
+.collage-2,
+.collage-3 {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+/* Break points ------------------ */
+
+@media (min-width: 576px) {
+  nav {
+    display: block !important;
+  }
+
+  .outer-grid {
+    grid-template-areas:
+      "aheader aheader"
+      "anav ainner";
+  }
+
+  .fa-bars {
+    display: none !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .inner-grid {
+    grid-template-rows: 1fr 60px;
+    grid-template-columns: minmax(auto, 700px) 1fr;
+    grid-template-areas:
+      "amain aaside"
+      "afooter afooter";
+  }
+
+  aside {
+    border: none;
+  }
+
+  main {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+@media (min-width: 1440px) {
+  .outer-grid {
+    grid-template-columns: 1fr 950px 1fr;
+    grid-template-areas:
+      "aheader aheader aheader"
+      "anav ainner ainner";
+  }
+
+  header {
+    display: grid;
+
+    grid-template-columns: 1fr 950px 1fr;
+    grid-template-areas: " alh . arh";
+  }
+
+  .left-header {
+    grid-area: alh;
+    justify-self: end;
+  }
+  .right-header {
+    grid-area: arh;
+    justify-self: start;
+  }
+  nav {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .nav-link {
+    padding-right: 15px;
+  }
+}
